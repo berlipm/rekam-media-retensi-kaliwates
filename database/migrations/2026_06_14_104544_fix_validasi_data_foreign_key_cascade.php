@@ -1,0 +1,63 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        if (Schema::getConnection()->getDriverName() === 'sqlite') {
+            return;
+        }
+
+        try {
+            Schema::table('validasi_data', function (Blueprint $table) {
+                $table->dropForeign(['dokumen_id']);
+            });
+        } catch (\Exception $e) {
+            try {
+                Schema::table('validasi_data', function (Blueprint $table) {
+                    $table->dropForeign('validasi_data_ibfk_1');
+                });
+            } catch (\Exception $ex) {
+                // ignore
+            }
+        }
+
+        Schema::table('validasi_data', function (Blueprint $table) {
+            $table->foreign('dokumen_id')
+                  ->references('id')
+                  ->on('dokumen_rekam_medis')
+                  ->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        if (Schema::getConnection()->getDriverName() === 'sqlite') {
+            return;
+        }
+
+        Schema::table('validasi_data', function (Blueprint $table) {
+            try {
+                $table->dropForeign(['dokumen_id']);
+            } catch (\Exception $e) {
+                // ignore
+            }
+        });
+
+        Schema::table('validasi_data', function (Blueprint $table) {
+            $table->foreign('dokumen_id')
+                  ->references('id')
+                  ->on('dokumen_rekam_medis');
+        });
+    }
+};
