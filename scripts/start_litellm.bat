@@ -10,8 +10,8 @@ echo =========================================
 echo PERHATIAN: Masukkan API Key Gemini Anda di bawah ini
 echo =========================================
 echo.
-set GEMINI_API_KEY=AIzaSyCaXLGgjviKmYe3We2rekA1UPBK-Njf7oE
-set GOOGLE_API_KEY=AIzaSyCaXLGgjviKmYe3We2rekA1UPBK-Njf7oE
+if "%GEMINI_API_KEY%"=="" set GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+if "%GOOGLE_API_KEY%"=="" set GOOGLE_API_KEY=%GEMINI_API_KEY%
 set GEMINI_API_VERSION=v1
 
 echo.

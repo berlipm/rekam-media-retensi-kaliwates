@@ -25,3 +25,10 @@ Thumbs.db
 composer.phar
 /test_*.php
 ~$*
+
+# Database dumps & SQL
+*.sql
+/database/sql/
+
+# Sensitive mock & patient data
+/document-ai-service/mock/

@@ -4,7 +4,7 @@ import requests
 
 def test_litellm_gemini():
     # TEST WITHOUT PROXY FIRST (Direct)
-    api_key = "AIzaSyCaXLGgjviKmYe3We2rekA1UPBK-Njf7oE"
+    api_key = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY")
     model = "gemini/gemini-1.5-flash"
     
     # Try different versions or names if possible

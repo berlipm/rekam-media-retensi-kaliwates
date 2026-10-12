@@ -1,6 +1,6 @@
 <?php
 
-$apiKey = 'AIzaSyBA4rP4synri21QXajab8NUOWTI2E5rwRk';
+$apiKey = getenv('GEMINI_API_KEY') ?: 'YOUR_GEMINI_API_KEY';
 
 // Test semua kombinasi: v1 vs v1beta, dan berbagai model
 $tests = [
